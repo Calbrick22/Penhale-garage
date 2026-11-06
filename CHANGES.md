@@ -48,7 +48,18 @@ The old form only worked inside WordPress. The new form sends messages to **penh
 - On the home page, the "Why choose us" section now sits beside real photos of your workshop, reception and waiting area.
 - The RAC, RMI, Trust My Garage and VOSA badges now appear on every page.
 
-## Things we need you to confirm before going live
+## Design refresh (second round)
+
+- **Number-plate booking box.** On the home page, under the phone number, visitors can type their registration into a yellow UK number plate and press "Book in". This takes them to the contact form with the registration already filled in. It doesn't look the car up, and it doesn't book an appointment automatically. It starts a message to you, and the registration appears in the email you receive. Phoning is still the main way to book.
+- **Animated car line.** The car outline from your logo draws itself across the top of the home page once, in about a second and a half, ending in an amber "headlight". People who've asked their device to reduce motion see it already drawn. A faint copy also sits behind the "Book your car in" banner on every page.
+- **Night-time price board.** The services list on the home page is now dark, with large headings and amber prices. On a computer, hovering a service slides in its photo. On phones and tablets the photo sits beside each service instead.
+- **Polish.**
+  - The header is see-through at the top of each page and firms up as you scroll.
+  - The mobile menu slides in.
+  - There's a soft amber glow behind the call panel.
+  - Headings are larger and bolder.
+
+
 
 These show as small red **[TO CONFIRM]** labels on the pages. Please check each one and tell us the correct answer.
 

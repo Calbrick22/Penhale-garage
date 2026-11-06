@@ -167,7 +167,11 @@
               <p class="field-error" id="f-email-error" hidden>Enter an email address, like name@example.com.</p>
             </div>
             <div class="field">
-              <label for="f-msg">Message <span class="hint">Your car's make, model and registration and what it needs.</span></label>
+              <label for="f-reg">Registration <span class="hint">Optional</span></label>
+              <input id="f-reg" class="plate-input" name="reg" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="8">
+            </div>
+            <div class="field">
+              <label for="f-msg">Message <span class="hint">Your car's make and model, and what it needs.</span></label>
               <textarea id="f-msg" name="message" required maxlength="5000"></textarea>
               <p class="field-error" id="f-msg-error" hidden>Enter your message.</p>
             </div>

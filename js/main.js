@@ -18,6 +18,43 @@
         links[i].setAttribute("href", parts.join("#"));
       }
     }
+    // Same for GET forms that point at a folder (the number plate box)
+    var getForms = doc.querySelectorAll('form[method="get"]');
+    for (var g = 0; g < getForms.length; g++) {
+      var act = getForms[g].getAttribute("action").split("#");
+      if (/\/$/.test(act[0])) {
+        act[0] += "index.html";
+        getForms[g].setAttribute("action", act.join("#"));
+      }
+    }
+  }
+
+  /* 1b. Header firms up once the page scrolls */
+  var siteHeader = doc.querySelector(".site-header");
+  if (siteHeader) {
+    var ticking = false;
+    var onScroll = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        siteHeader.classList.toggle("is-scrolled", window.scrollY > 8);
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* 1c. Number plate inputs: capitals, letters, numbers and spaces only */
+  function tidyReg(v) {
+    return String(v || "").toUpperCase().replace(/[^A-Z0-9 ]/g, "").replace(/\s+/g, " ").slice(0, 8);
+  }
+  var plates = doc.querySelectorAll("#plate, #f-reg");
+  for (var pl = 0; pl < plates.length; pl++) {
+    plates[pl].addEventListener("input", function () {
+      var t = tidyReg(this.value);
+      if (t !== this.value) this.value = t;
+    });
   }
 
   /* 2. Navigation: mobile menu + dropdown disclosures */
@@ -186,6 +223,16 @@
     if (location.protocol === "file:") {
       status.dataset.kind = "info";
       status.textContent = "Preview mode: this form only sends once the site is uploaded to a web server with PHP." + phoneMsg;
+    }
+    // Registration carried over from the number plate box on the home page
+    var regField = doc.getElementById("f-reg");
+    var regParam = tidyReg(params.get("reg")).trim();
+    if (regField && regParam) {
+      regField.value = regParam;
+      if (location.protocol !== "file:") {
+        status.dataset.kind = "info";
+        status.textContent = "Thanks – we've added " + regParam + " to the form. Add your details and we'll get back to you to book it in.";
+      }
     }
     var started = doc.getElementById("form-started");
     if (started) started.value = String(Math.floor(Date.now() / 1000));

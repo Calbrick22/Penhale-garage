@@ -52,6 +52,7 @@ function field($name, $max) {
 $name    = field('name', 100);
 $phone   = field('telephone', 30);
 $email   = field('email', 150);
+$reg     = strtoupper(preg_replace('/[^A-Za-z0-9 ]/', '', field('reg', 12)));
 $message = field('message', 5000);
 $gdpr    = field('gdpr', 3);
 $trap    = field('website', 200);
@@ -77,6 +78,7 @@ $body  = "New message from the website contact form\n\n";
 $body .= "Name: " . $clean($name) . "\n";
 $body .= "Telephone: " . $clean($phone) . "\n";
 $body .= "Email: " . $clean($email) . "\n";
+$body .= "Registration: " . ($reg !== '' ? $reg : '(not given)') . "\n";
 $body .= "Privacy policy agreed: yes\n";
 $body .= "Sent: " . date('j F Y, H:i') . "\n\n";
 $body .= "Message:\n" . $message . "\n";

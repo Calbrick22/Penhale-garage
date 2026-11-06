@@ -33,6 +33,8 @@
   --ink: #0B101D;         /* body text */
   --amber: #F2B705;       /* signal amber – call to book only */
   --amber-dark: #D9A300;
+  --plate: #FFD500;       /* UK rear number plate yellow */
+  --night: #141B33;       /* price board background */
   --white: #FFFFFF;
   --muted: #4A5468;       /* secondary text on white: 7.4:1 */
   --line: #D5DBE5;
@@ -46,8 +48,8 @@
   --fs-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);
   --fs-h4: 1.125rem;
   --fs-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.4375rem);
-  --fs-h2: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
-  --fs-h1: clamp(2.125rem, 1.5rem + 3vw, 3.5rem);
+  --fs-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.75rem);
+  --fs-h1: clamp(2.375rem, 1.5rem + 3.8vw, 4.25rem);
 
   /* Space */
   --gutter: 1rem;
@@ -177,6 +179,7 @@ a:hover { color: var(--navy); text-decoration-thickness: 2px; }
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
 .btn svg { width: 1.15em; height: 1.15em; flex: none; }
 .btn-call { background: var(--amber); color: var(--ink); }
@@ -197,7 +200,12 @@ a:hover { color: var(--navy); text-decoration-thickness: 2px; }
   z-index: 50;
   background: var(--navy-deep);
   color: var(--white);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.25s, box-shadow 0.25s;
+}
+.site-header.is-scrolled {
+  background: rgba(28, 38, 70, 0.97);
+  box-shadow: 0 10px 30px rgba(11, 16, 29, 0.35);
 }
 .header-inner {
   display: flex;
@@ -239,9 +247,19 @@ a:hover { color: var(--navy); text-decoration-thickness: 2px; }
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars::before { top: 0; transform: rotate(45deg); }
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars::after { top: 0; transform: rotate(-45deg); }
 
-.site-nav { display: none; }
+.site-nav {
+  position: absolute;
+  inset: 100% 0 auto 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.75rem);
+  transition: opacity 0.2s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
 .site-nav.is-open {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.2s ease, transform 0.25s ease, visibility 0s;
   position: absolute;
   inset: 100% 0 auto 0;
   max-height: calc(100vh - 4.25rem);
@@ -287,6 +305,10 @@ a:hover { color: var(--navy); text-decoration-thickness: 2px; }
   .menu-toggle { display: none; }
   .site-nav, .site-nav.is-open {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: none;
     position: static;
     margin-inline-start: auto;
     padding: 0;
@@ -743,3 +765,240 @@ a:hover { color: var(--navy); text-decoration-thickness: 2px; }
 .package h3 { margin-top: 0; }
 .package p { font-size: var(--fs-small); color: var(--muted); }
 .package .ticks li { font-size: 1rem; }
+
+/* =====================================================================
+   Design refresh: hero line, number plate, night price board, glow
+   ===================================================================== */
+
+/* Glass header over the dark top band of each page (browsers with :has) */
+body:has(main > .hero:first-child, main > .page-head:first-child) .site-header {
+  margin-bottom: -4.3rem;
+  background: rgba(28, 38, 70, 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+body:has(main > .hero:first-child, main > .page-head:first-child) .site-header.is-scrolled {
+  background: rgba(28, 38, 70, 0.96);
+}
+body:has(main > .hero:first-child) .hero { padding-top: calc(clamp(2.25rem, 1.5rem + 3vw, 4.5rem) + 4.3rem); }
+body:has(main > .page-head:first-child) .page-head { padding-top: calc(1.25rem + 4.3rem); }
+
+/* Hero: deeper gradient with an amber glow behind the call panel */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(38rem 26rem at 82% 28%, rgba(242, 183, 5, 0.16), transparent 65%),
+    radial-gradient(50rem 30rem at 10% 110%, rgba(48, 110, 174, 0.28), transparent 70%),
+    linear-gradient(180deg, var(--navy-deep) 0%, #161E3A 100%);
+  padding-bottom: max(6rem, 19vw);
+}
+.hero .hero-title {
+  font-size: clamp(2.75rem, 1.4rem + 5.6vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+/* The car line from the logo, drawn once on load like headlights sweeping */
+.hero-line {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: 0.5vw;
+  width: max(34rem, 94%);
+  height: auto;
+  max-width: none;
+  transform: translateX(-50%);
+  clip-path: inset(0 0 0 0);
+  animation: line-draw 1.6s cubic-bezier(0.65, 0, 0.25, 1) 0.15s both;
+}
+@keyframes line-draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+.cta-band { position: relative; overflow: hidden; isolation: isolate; }
+.cta-line {
+  position: absolute;
+  z-index: -1;
+  right: -8rem;
+  bottom: -1.5rem;
+  width: 44rem;
+  max-width: none;
+  opacity: 0.55;
+}
+
+/* Call panel: glassy, lifted, glowing */
+.call-panel {
+  background: rgba(21, 62, 111, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 6px solid var(--amber);
+  box-shadow: 0 30px 80px -24px rgba(242, 183, 5, 0.38), 0 18px 40px rgba(6, 10, 22, 0.45);
+}
+
+/* Number plate booking box */
+.plate-form { margin: 1.25rem 0 0; padding-top: 1.1rem; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+.plate-label { display: block; margin-bottom: 0.55rem; color: var(--sky); font-size: var(--fs-small); }
+.plate-row { display: flex; gap: 0.5rem; }
+.plate {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  background: var(--plate);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+.plate-band {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: none;
+  width: 1.9rem;
+  padding-bottom: 0.3rem;
+  background: #00309A;
+  color: var(--white);
+  font: 700 0.6875rem/1 var(--font-body);
+  letter-spacing: 0.04em;
+}
+.plate input, .plate-input {
+  font-family: var(--font-head);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.plate input {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.1rem;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.375rem;
+  text-align: center;
+}
+.plate input::placeholder { color: #6B5A00; opacity: 1; }
+.plate input:focus-visible { outline: none; }
+.plate:focus-within { outline: 3px solid var(--white); outline-offset: 3px; }
+.call-panel .btn-plate { width: auto; flex: none; }
+.btn-plate { background: var(--white); color: var(--navy-deep); }
+.btn-plate:hover { background: var(--sky); color: var(--navy-deep); }
+.field input.plate-input {
+  max-width: 13rem;
+  background: var(--plate);
+  border-color: var(--ink);
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+/* Night price board */
+.board-section { background: var(--night); color: var(--white); }
+.board-section h2 { color: var(--white); }
+.board-section .section-intro p { color: var(--sky); }
+.board { border-top: 0; }
+.board-row {
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.25rem 0;
+  transition: background-color 0.2s;
+}
+.board-row:first-child { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.board-row::before {
+  content: "";
+  position: absolute;
+  left: 0; top: -1px; bottom: -1px;
+  width: 4px;
+  background: var(--amber);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease;
+}
+.board-row:hover, .board-row:focus-within { background: rgba(255, 255, 255, 0.04); }
+.board-row:hover::before, .board-row:focus-within::before { transform: scaleY(1); }
+.board-row img.board-thumb {
+  grid-row: auto;
+  width: 4.75rem;
+  height: 3.6rem;
+  border-radius: 4px;
+  align-self: start;
+}
+.board-main { min-width: 0; }
+.board-row h3 { font-size: clamp(1.375rem, 1rem + 1.6vw, 2.375rem); letter-spacing: -0.025em; }
+.board-row h3 a { color: var(--white); }
+.board-row:hover h3 a, .board-row:focus-within h3 a { color: var(--amber); text-decoration: none; }
+.board-row h3 a:focus-visible { outline: none; }
+.board-row:focus-within { outline: 3px solid var(--amber); outline-offset: 2px; }
+.board-desc { color: var(--sky); margin-top: 0.25rem; }
+.board-price {
+  grid-column: 2;
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: var(--amber);
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+.board-price small { color: var(--sky); font-family: var(--font-body); font-weight: 400; }
+@media (min-width: 48em) {
+  .board-row {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    padding: 1.6rem 1.25rem 1.6rem 1.5rem;
+  }
+  .board-row img.board-thumb {
+    position: absolute;
+    right: 17rem;
+    top: 50%;
+    width: 12rem;
+    height: 8rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(1rem, -50%) rotate(-3deg) scale(0.94);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.35s;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .board-row:hover img.board-thumb, .board-row:focus-within img.board-thumb {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%) rotate(-3deg) scale(1);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
+  }
+  .board-main { grid-column: 1; }
+  .board-price { grid-column: 2; grid-row: 1; margin: 0; text-align: right; font-size: 1.625rem; }
+}
+/* Touch screens have no hover: keep the thumbnail visible in the row instead */
+@media (min-width: 48em) and (max-width: 63.99em), (min-width: 48em) and (hover: none) {
+  .board-row { grid-template-columns: 8rem minmax(0, 1fr) 13rem; }
+  .board-row img.board-thumb {
+    position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none;
+    width: 8rem; height: 5.5rem;
+  }
+  .board-main { grid-column: 2; }
+  .board-price { grid-column: 3; }
+}
+
+/* Page headers on inner pages pick up the same glow */
+.page-head {
+  background:
+    radial-gradient(36rem 20rem at 90% 0%, rgba(242, 183, 5, 0.12), transparent 65%),
+    linear-gradient(180deg, var(--navy-deep), #161E3A);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line { animation: none; clip-path: none; }
+}
+@media (min-width: 64em) {
+  .hero { padding-bottom: clamp(3.5rem, 5vw, 6rem); }
+  .hero-line {
+    left: auto;
+    right: -2vw;
+    bottom: 1.25rem;
+    width: 50vw;
+    transform: none;
+  }
+}
