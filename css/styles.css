@@ -1002,3 +1002,192 @@ body:has(main > .page-head:first-child) .page-head { padding-top: calc(1.25rem +
     transform: none;
   }
 }
+
+/* =====================================================================
+   Round 3: warning-light dashboard, MOT reminder, A30 route, reveals
+   ===================================================================== */
+
+/* ---- Warning-light dashboard (instrument cluster) ---- */
+.lights-grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 64em) { .lights-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4rem; } }
+.lights-intro p { color: var(--muted); }
+
+.dash {
+  --off: #5B6584;
+  --amber-lit: #FFB81C;
+  --red-lit: #FF5A4E;
+  position: relative;
+  padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  border-radius: 28px;
+  color: var(--white);
+  background:
+    radial-gradient(120% 90% at 50% 0%, #26304F 0%, #121830 55%, #0B1022 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -18px 40px rgba(0, 0, 0, 0.45),
+    0 24px 60px -20px rgba(11, 16, 34, 0.6);
+  border: 1px solid #2E3858;
+}
+.dash::before {
+  /* faint gauge arc, like the rim of a speedo */
+  content: "";
+  position: absolute;
+  inset: 0.6rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+.dash-lights {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+@media (min-width: 30em) { .dash-lights { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.dash-light {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 3.25rem;
+  padding: 0.55rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--amber-lit);
+  cursor: pointer;
+  transition: color 0.25s, filter 0.25s, background-color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.dash-light[data-tone="red"] { color: var(--red-lit); }
+.dash-light svg { width: 100%; max-width: 3rem; height: auto; filter: drop-shadow(0 0 6px currentColor); }
+.dash-light:hover { background: rgba(255, 255, 255, 0.08); }
+.dash-light:active { transform: scale(0.96); }
+.dash-light[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: currentColor;
+  box-shadow: 0 0 0 1px currentColor, 0 0 22px -4px currentColor;
+}
+.dash-light:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+
+/* ignition check: lights come on one by one when the panel scrolls into view */
+.js .dash:not(.is-visible) .dash-light { color: var(--off); }
+.js .dash:not(.is-visible) .dash-light svg { filter: none; }
+.js .dash.is-visible .dash-light { transition-delay: calc(var(--i) * 0.12s), calc(var(--i) * 0.12s), 0s, 0s, 0s; }
+
+.dash-info { min-height: 9.5rem; }
+.dash-detail {
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--amber-lit);
+  margin-bottom: 0.75rem;
+}
+.dash-detail[data-tone="red"] { border-left-color: var(--red-lit); }
+.dash-detail h3 { color: var(--white); font-size: 1.1875rem; margin-bottom: 0.35rem; }
+.dash-detail p { color: var(--sky); margin: 0 0 0.4rem; }
+.dash-detail .dash-act { color: var(--white); font-weight: 700; margin: 0; }
+.js .dash-detail { margin-bottom: 0; animation: detail-in 0.25s ease both; }
+@keyframes detail-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.dash-note { margin: 1rem 0 0; font-size: var(--fs-small); color: #A9B6CC; }
+.prose-dash { margin: 0 0 2rem; }
+
+/* ---- MOT reminder card ---- */
+.mot-card {
+  margin: 0 0 2.25rem;
+  padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  border-radius: 16px;
+  background:
+    radial-gradient(28rem 14rem at 100% 0%, rgba(242, 183, 5, 0.18), transparent 70%),
+    var(--navy-deep);
+  color: var(--white);
+  border-top: 6px solid var(--amber);
+}
+.mot-card h2 { color: var(--white); margin-top: 0; }
+.mot-steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+.mot-steps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 1.5rem 3.25rem;
+}
+.mot-steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: 0;
+  width: 2.25rem; height: 2.25rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--ink);
+  font: 800 1.0625rem/1 var(--font-head);
+}
+.mot-steps > li + li::after {
+  content: "";
+  position: absolute;
+  left: 1.1rem; top: -1.5rem; height: 1.5rem;
+  border-left: 2px dashed rgba(255, 255, 255, 0.25);
+}
+.mot-steps p { color: var(--sky); margin-bottom: 0.75rem; }
+.mot-steps strong { color: var(--white); }
+.mot-form label { display: block; margin-bottom: 0.6rem; color: var(--sky); }
+.mot-form .hint { display: block; font-size: var(--fs-small); margin-top: 0.2rem; }
+.mot-form input[type="date"] {
+  min-height: 3rem;
+  width: 100%;
+  max-width: 16rem;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid var(--white);
+  border-radius: var(--radius);
+  font: 700 1.0625rem var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  color-scheme: light;
+}
+.mot-form .btn-row { margin-top: 0.9rem; }
+.mot-status { margin: 0.75rem 0 0; font-weight: 700; color: var(--white); }
+.mot-status:empty { display: none; }
+.mot-status[data-kind="error"] { color: #FFB4AD; }
+.mot-small { margin: 0; font-size: var(--fs-small); color: #A9B6CC; }
+
+/* ---- A30 route graphic ---- */
+.route { margin: 0; }
+.route-map {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px -24px rgba(28, 38, 70, 0.45);
+  background: #F5F7FB;
+}
+.route figcaption { margin-top: 0.5rem; font-size: var(--fs-small); color: var(--muted); }
+.route-trace { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.js .route:not(.is-visible) .route-trace { stroke-dashoffset: 1; }
+.js .route.is-visible .route-trace { transition: stroke-dashoffset 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
+.route-pin { transform-box: fill-box; }
+.js .route:not(.is-visible) .route-pin { opacity: 0; }
+.js .route.is-visible .route-pin { animation: pin-drop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) 1.9s both; }
+@keyframes pin-drop { from { opacity: 0; translate: 0 -24px; } to { opacity: 1; translate: 0 0; } }
+.find-address { font-style: normal; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.find-us { align-items: center; }
+.contact-route { margin: 2rem 0 1rem; }
+.map { margin-top: 1rem; }
+
+/* ---- "Why choose us" ticks switch on in turn ---- */
+.js .ticks[data-reveal] li::before { transition: transform 0.3s cubic-bezier(0.2, 1.4, 0.4, 1), opacity 0.3s; }
+.js .ticks[data-reveal]:not(.is-visible) li::before { opacity: 0; transform: rotate(-45deg) scale(0.2); }
+.js .ticks[data-reveal] li:nth-child(2)::before { transition-delay: 0.08s; }
+.js .ticks[data-reveal] li:nth-child(3)::before { transition-delay: 0.16s; }
+.js .ticks[data-reveal] li:nth-child(4)::before { transition-delay: 0.24s; }
+.js .ticks[data-reveal] li:nth-child(5)::before { transition-delay: 0.32s; }
+.js .ticks[data-reveal] li:nth-child(6)::before { transition-delay: 0.40s; }
+.js .ticks[data-reveal] li:nth-child(7)::before { transition-delay: 0.48s; }
+.js .ticks[data-reveal] li:nth-child(8)::before { transition-delay: 0.56s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .dash:not(.is-visible) .dash-light { color: var(--amber-lit); }
+  .js .dash:not(.is-visible) .dash-light[data-tone="red"] { color: var(--red-lit); }
+  .js .route:not(.is-visible) .route-trace { stroke-dashoffset: 0; }
+  .js .route:not(.is-visible) .route-pin { opacity: 1; }
+  .js .ticks[data-reveal]:not(.is-visible) li::before { opacity: 1; transform: rotate(-45deg); }
+}

@@ -22,6 +22,7 @@
   <link rel="preload" href="fonts/montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="js/main.js" defer></script>
   <script type="application/ld+json">
 {
@@ -131,7 +132,6 @@
         </div>
         <div class="hero-text">
           <p class="hero-lead">If you are looking for a friendly, local garage in Fraddon, Cornwall, then visit Penhale Garage for expert services at competitive prices. Established since 2013, we pride our business on providing affordable vehicle servicing, repairs and MOTs. Fully equipped to handle everything from cambelt and clutch replacements to exhaust repairs, brake replacements, diagnostics, tyres and welding, you can trust your car is in safe hands. To book your vehicle in for servicing or repairs, get in touch with the team.</p>
-          <p>Our garage is easily accessible and located just off the A30 near Kingsley Village which has a selection of shops and restaurants you can visit while we work on your vehicle.</p>
         </div>
       </div>
     </section>
@@ -208,7 +208,7 @@
         <div>
           <h2 id="why-title">Why Choose Penhale Garage?</h2>
           <p>As a local and reliable garage, you can trust us to look after your car as if it was our own. Our team of technicians are highly qualified and experienced and always strive to achieve complete client satisfaction. So, whether you are on holiday in the area and need repairs or are a local resident looking for a long-term relationship with mechanics you can trust, get in touch to book your vehicle in. When you choose us, you will benefit from:</p>
-          <ul class="ticks"><li>Vehicle technicians with a high level of expertise in all vehicle makes and models</li><li>RAC Approved</li><li>VOSA Authorised MOT Test Centre</li><li>RMI Members (Retail Motor Industry Federation)</li><li>Members of the Trust My Garage Scheme</li><li>Realistic and affordable pricing</li><li>Expert advice</li><li>Free no-obligation quotations and estimates</li></ul>
+          <ul class="ticks" data-reveal><li>Vehicle technicians with a high level of expertise in all vehicle makes and models</li><li>RAC Approved</li><li>VOSA Authorised MOT Test Centre</li><li>RMI Members (Retail Motor Industry Federation)</li><li>Members of the Trust My Garage Scheme</li><li>Realistic and affordable pricing</li><li>Expert advice</li><li>Free no-obligation quotations and estimates</li></ul>
         </div>
         <div>
           <h3>Visit the garage</h3>
@@ -223,6 +223,107 @@
       </div>
     </section>
 
+
+    <section class="section lights-section" aria-labelledby="home-lights-title">
+      <div class="wrap lights-grid">
+        <div class="lights-intro">
+          <h2 id="home-lights-title">Warning light on?</h2>
+          <p>Tap a light to see what it usually means. Our diagnostic check pinpoints the exact fault for £25 + VAT.</p>
+          <div class="btn-row">
+            <a class="btn btn-call" href="tel:01726861338"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>Book a check</a>
+            <a class="btn btn-ghost" href="car-diagnostics/">About diagnostics</a>
+          </div>
+        </div>
+        <div class="dash" data-reveal>
+          <div role="group" aria-label="Dashboard warning lights">
+            <ul class="dash-lights">
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="home-lights-engine" aria-pressed="false" style="--i:0"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21v11M7 26.5h4M11 19h6v-5h12v5h4l4 4h3v-3h4v14h-4v-3h-3l-4 6H17l-6-6z"/><path d="M19 10h10"/></svg><span class="visually-hidden">Engine management light</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="home-lights-oil" aria-pressed="false" style="--i:1"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20l6 2.5h7l2.5-4h10l4 4 9.5-4.5-12 12.5H12l-7-4.5z"/><path d="M25.5 18.5v-4M22 14.5h7"/><path d="M44 28c0 2.2-1.6 3.6-1.6 4.8a1.6 1.6 0 0 0 3.2 0c0-1.2-1.6-2.6-1.6-4.8z" fill="currentColor"/></svg><span class="visually-hidden">Oil pressure warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="home-lights-battery" aria-pressed="false" style="--i:2"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="15" width="36" height="23" rx="2"/><path d="M11 15v-4h6v4M31 15v-4h6v4M12 26.5h7M15.5 23v7M29 26.5h7"/></svg><span class="visually-hidden">Battery / charging warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="home-lights-brakes" aria-pressed="false" style="--i:3"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="12"/><path d="M8.5 12.5a19 19 0 0 0 0 23M39.5 12.5a19 19 0 0 1 0 23M24 17v9"/><circle cx="24" cy="31" r="1.7" fill="currentColor"/></svg><span class="visually-hidden">Brake system warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="home-lights-tyres" aria-pressed="false" style="--i:4"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 37c-3.5-3.5-6-8-6-13.5C7 16 10 11.5 11.5 9h25c1.5 2.5 4.5 7 4.5 14.5 0 5.5-2.5 10-6 13.5"/><path d="M9 40.5h30M24 15.5v10"/><circle cx="24" cy="30.5" r="1.7" fill="currentColor"/></svg><span class="visually-hidden">Tyre pressure warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="home-lights-abs" aria-pressed="false" style="--i:5"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="13"/><path d="M7.5 12.5a19.5 19.5 0 0 0 0 23M40.5 12.5a19.5 19.5 0 0 1 0 23"/><text x="24" y="28" text-anchor="middle" font-size="10.5" font-weight="800" font-family="Montserrat, Arial, sans-serif" fill="currentColor" stroke="none">ABS</text></svg><span class="visually-hidden">ABS warning</span></button></li>
+            </ul>
+          </div>
+          <div class="dash-info" aria-live="polite">
+            <div class="dash-detail" id="home-lights-engine" data-tone="amber">
+              <h3>Engine management light</h3>
+              <p>The engine&#x27;s computer has recorded a fault. It can be something minor, such as a sensor, or something that needs attention soon.</p>
+              <p class="dash-act">If it flashes, reduce speed and get the car checked straight away.</p>
+            </div>
+            <div class="dash-detail" id="home-lights-oil" data-tone="red">
+              <h3>Oil pressure warning</h3>
+              <p>Oil pressure is too low. Driving on can cause serious engine damage.</p>
+              <p class="dash-act">Pull over safely and switch the engine off as soon as you can.</p>
+            </div>
+            <div class="dash-detail" id="home-lights-battery" data-tone="red">
+              <h3>Battery / charging warning</h3>
+              <p>The charging system isn&#x27;t working properly. This is often the alternator or its drive belt.</p>
+              <p class="dash-act">The car may only run for a short time on battery power, so get it checked soon.</p>
+            </div>
+            <div class="dash-detail" id="home-lights-brakes" data-tone="red">
+              <h3>Brake system warning</h3>
+              <p>This can mean the handbrake is on, the brake fluid is low, or there is a fault in the braking system.</p>
+              <p class="dash-act">If it stays on with the handbrake off, don&#x27;t drive until it&#x27;s been checked.</p>
+            </div>
+            <div class="dash-detail" id="home-lights-tyres" data-tone="amber">
+              <h3>Tyre pressure warning</h3>
+              <p>One or more tyres may be under-inflated.</p>
+              <p class="dash-act">Check and adjust your tyre pressures. If the light comes back, you may have a slow puncture.</p>
+            </div>
+            <div class="dash-detail" id="home-lights-abs" data-tone="amber">
+              <h3>ABS warning</h3>
+              <p>The anti-lock braking system has a fault. Your normal brakes should still work, but ABS won&#x27;t help in an emergency stop.</p>
+              <p class="dash-act">Drive carefully and book a check soon.</p>
+            </div>
+          </div>
+          <p class="dash-note">Common meanings only. Lights vary between cars, so check your handbook.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-grey" aria-labelledby="find-title">
+      <div class="wrap split find-us">
+        <div>
+          <h2 id="find-title">Just off the A30</h2>
+          <p>Our garage is easily accessible and located just off the A30 near Kingsley Village which has a selection of shops and restaurants you can visit while we work on your vehicle.</p>
+          <address class="find-address">Penhale Garage<br>New Rd<br>Fraddon<br>St. Columb<br>TR9 6NA</address>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Penhale+Garage+New+Rd+Fraddon+TR9+6NA" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5A2.5 2.5 0 1 0 12 11.5 2.5 2.5 0 0 0 12 6.5z"/></svg>Get directions</a>
+            <a class="btn btn-ghost" href="tel:01726861338"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>01726&nbsp;861&nbsp;338</a>
+          </div>
+        </div>
+        <figure class="route" data-reveal>
+          <svg class="route-map" viewBox="0 0 640 380" role="img" aria-labelledby="home-route-t home-route-d">
+            <title id="home-route-t">How to find Penhale Garage</title>
+            <desc id="home-route-d">Simplified diagram, not to scale. Penhale Garage is on New Rd in Fraddon, just off the A30 near Kingsley Village, between Bodmin to the east and Redruth to the west.</desc>
+            <defs>
+              <pattern id="home-route-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" fill="none" stroke="#DCE3EE" stroke-width="1"/></pattern>
+            </defs>
+            <rect width="640" height="380" fill="#F5F7FB"/>
+            <rect width="640" height="380" fill="url(#home-route-grid)"/>
+            <path class="route-road" d="M-20 120 C 140 92, 250 150, 360 128 S 560 92, 660 112" fill="none" stroke="#2A3452" stroke-width="30" stroke-linecap="round"/>
+            <path d="M-20 120 C 140 92, 250 150, 360 128 S 560 92, 660 112" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="14 12"/>
+            <path class="route-road" d="M372 126 C 380 170, 330 196, 330 214" fill="none" stroke="#2A3452" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="330" cy="232" r="20" fill="none" stroke="#2A3452" stroke-width="13"/>
+            <path class="route-road" d="M348 240 C 400 262, 440 290, 492 296" fill="none" stroke="#5A6687" stroke-width="12" stroke-linecap="round"/>
+            <path class="route-trace" pathLength="1" d="M60 106 C 160 94, 250 150, 360 128 C 380 170, 330 196, 330 212 A 20 20 0 0 1 348 240 C 400 262, 440 290, 492 296" fill="none" stroke="#F2B705" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(36 34)"><rect width="96" height="44" rx="6" fill="#00703C" stroke="#FFFFFF" stroke-width="3"/><text x="48" y="31" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="24" fill="#FFD500">A30</text></g>
+            <text x="22" y="176" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="25" fill="#1C2646">&#8592; Redruth</text>
+            <text x="618" y="176" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="25" fill="#1C2646">Bodmin &#8594;</text>
+            <text x="300" y="282" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="24" fill="#4A5468">Kingsley Village</text>
+            <text x="456" y="330" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-size="23" fill="#4A5468">New Rd</text>
+            <g class="route-pin" transform="translate(492 296)">
+              <circle r="26" fill="#F2B705" opacity="0.25"/>
+              <path d="M0 0 C -6 -10, -20 -18, -20 -32 A 20 20 0 1 1 20 -32 C 20 -18, 6 -10, 0 0z" fill="#1C2646" stroke="#F2B705" stroke-width="3"/>
+              <circle cx="0" cy="-32" r="7" fill="#F2B705"/>
+            </g>
+            <g transform="translate(520 236)"><rect width="112" height="52" rx="6" fill="#1C2646"/><text x="12" y="23" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="16" fill="#FFFFFF">Penhale</text><text x="12" y="42" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="16" fill="#F2B705">Garage</text></g>
+          </svg>
+          <figcaption>Simplified diagram, not to scale.</figcaption>
+        </figure>
+      </div>
+    </section>
 
     <section class="cta-band on-dark" aria-labelledby="cta-title">
       <svg class="cta-line" viewBox="0 0 1006 196" aria-hidden="true" focusable="false"><defs><linearGradient id="cta-line-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.12"/><stop offset="0.7" stop-color="#FFFFFF" stop-opacity="0.45"/><stop offset="0.93" stop-color="#F2B705" stop-opacity="0.9"/><stop offset="1" stop-color="#FFD500" stop-opacity="1"/></linearGradient></defs><path fill="url(#cta-line-grad)" transform="translate(-3.53 5.32)" d="M1008.47,190.55c-7.79-7.65-15-16.07-23.47-22.82-30.1-23.9-64.65-38.4-102-46.66a502.75,502.75,0,0,0-87.92-11.43q-48.39-2-96.8-3.94c-41.76-1.61-83.54-2.64-125.26-4.87-25-1.33-50-4.35-75-6.84-25.65-2.55-51.3-5-76.88-8.18A1025.9,1025.9,0,0,0,301.16,78a752.78,752.78,0,0,0-135,12.14c-8.5,1.52-17,3.24-25.43,4.92a9,9,0,0,0-2.27,1.18l.25,1.28c4.12-.32,8.25-.59,12.37-1a899.7,899.7,0,0,1,112.31-3c19.62.69,39.27,1.61,58.8,3.56,30.58,3,61.15,6.49,91.58,10.83,27,3.85,53.86,8.58,80.57,14,28.83,5.79,57.42,12.74,86.1,19.23,26.07,5.91,52,12.48,78.22,17.66,28,5.54,55,2.13,81.28-9.95,26.95-12.37,55.22-21.4,85-24,33.6-2.93,65.81,1.18,94.53,20.79,1,.65,1.9,1.34,2.84,2a4,4,0,0,0,2,1c-11-4.26-21.88-9.09-33.14-12.64-21.77-6.87-43.88-6.14-66.13-1.92-26.69,5.06-51.67,14.44-75.79,26.87-20.49,10.55-42.21,18.47-65.54,19.27-9.49.32-19.29-1.32-28.56-3.63-31.58-7.88-62.84-17-94.49-24.62-40.35-9.64-80.76-19.26-121.52-26.91-35.07-6.59-70.6-11-106.06-15.24-23.42-2.8-47.07-4.2-70.66-5.09-24.78-.94-49.63-1.08-74.42-.58-25,.51-49.85,3-74.79,3.24-27.72.29-55-3.6-81.29-13.12-.84-.31-1.67-.67-3.1-1.25,13.37,0,25.94.18,38.51,0,31.51-.55,62.65-4.65,93.74-9.46,23-3.56,46-7.19,69.19-9.18,26.17-2.24,52.51-4,78.73-3.53,33.07.66,66.11,3.6,99.12,6.06,22.05,1.65,44,4.16,66.05,6.33,36.24,3.57,72.44,7.63,108.73,10.59,21.39,1.74,42.92,1.53,64.38,2.55,39.07,1.84,78.13,3.76,117.18,6,21.59,1.24,43.14,3.19,64.7,4.79,1.35.1,2.72,0,4.08,0l.15-1.48c-2.88-.61-5.74-1.4-8.65-1.79-32-4.37-63.91-8.76-95.9-13-20.11-2.63-40.27-4.83-60.38-7.44a17.57,17.57,0,0,1-7.19-3.08c-27.83-18.9-58-33.06-89.52-44.53-26.89-9.78-54-18.59-82.31-23.35A424.87,424.87,0,0,0,374.56,8.92C344,12.1,314.47,19.7,285.65,30.37c-37.7,14-75.43,27.83-113.36,41.1-23.5,8.22-48.06,12.12-72.86,13.44C79,86,58.55,86.3,38.13,86c-11.56-.18-23.09-2.3-34.6-4.7,5.31-.27,10.61-.51,15.92-.81,34.43-2,67.59-9.57,100.06-21.21C172,40.45,224.62,21.54,279,8.73c22.08-5.2,44.81-8.29,67.43-10.44,25.3-2.41,50.82-3.67,76.24-3.61,41.11.1,81.25,6.87,120.64,19.24,40,12.56,78,29.63,115,48.85,17.72,9.2,36.34,13.28,55.54,16.36,25.28,4.05,50.6,7.83,75.83,12.13,29.32,5,58.68,9.86,87.8,15.84,29.92,6.14,58.8,15.47,84.39,33a160.19,160.19,0,0,1,47.56,50.45Z"/></svg>

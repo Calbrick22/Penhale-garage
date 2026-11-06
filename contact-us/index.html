@@ -22,6 +22,7 @@
   <link rel="preload" href="../fonts/montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="../js/main.js" defer></script>
   <script type="application/ld+json">
 {
@@ -138,7 +139,36 @@
           <tr data-day="0"><th scope="row">Sunday</th><td>Closed</td></tr>
           </tbody>
         </table>
-          <div class="map" style="margin-top:2rem">
+          <div class="contact-route"><figure class="route" data-reveal>
+          <svg class="route-map" viewBox="0 0 640 380" role="img" aria-labelledby="contact-route-t contact-route-d">
+            <title id="contact-route-t">How to find Penhale Garage</title>
+            <desc id="contact-route-d">Simplified diagram, not to scale. Penhale Garage is on New Rd in Fraddon, just off the A30 near Kingsley Village, between Bodmin to the east and Redruth to the west.</desc>
+            <defs>
+              <pattern id="contact-route-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" fill="none" stroke="#DCE3EE" stroke-width="1"/></pattern>
+            </defs>
+            <rect width="640" height="380" fill="#F5F7FB"/>
+            <rect width="640" height="380" fill="url(#contact-route-grid)"/>
+            <path class="route-road" d="M-20 120 C 140 92, 250 150, 360 128 S 560 92, 660 112" fill="none" stroke="#2A3452" stroke-width="30" stroke-linecap="round"/>
+            <path d="M-20 120 C 140 92, 250 150, 360 128 S 560 92, 660 112" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="14 12"/>
+            <path class="route-road" d="M372 126 C 380 170, 330 196, 330 214" fill="none" stroke="#2A3452" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="330" cy="232" r="20" fill="none" stroke="#2A3452" stroke-width="13"/>
+            <path class="route-road" d="M348 240 C 400 262, 440 290, 492 296" fill="none" stroke="#5A6687" stroke-width="12" stroke-linecap="round"/>
+            <path class="route-trace" pathLength="1" d="M60 106 C 160 94, 250 150, 360 128 C 380 170, 330 196, 330 212 A 20 20 0 0 1 348 240 C 400 262, 440 290, 492 296" fill="none" stroke="#F2B705" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(36 34)"><rect width="96" height="44" rx="6" fill="#00703C" stroke="#FFFFFF" stroke-width="3"/><text x="48" y="31" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="24" fill="#FFD500">A30</text></g>
+            <text x="22" y="176" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="25" fill="#1C2646">&#8592; Redruth</text>
+            <text x="618" y="176" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="25" fill="#1C2646">Bodmin &#8594;</text>
+            <text x="300" y="282" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-weight="700" font-size="24" fill="#4A5468">Kingsley Village</text>
+            <text x="456" y="330" text-anchor="end" font-family="Source Sans 3, Arial, sans-serif" font-size="23" fill="#4A5468">New Rd</text>
+            <g class="route-pin" transform="translate(492 296)">
+              <circle r="26" fill="#F2B705" opacity="0.25"/>
+              <path d="M0 0 C -6 -10, -20 -18, -20 -32 A 20 20 0 1 1 20 -32 C 20 -18, 6 -10, 0 0z" fill="#1C2646" stroke="#F2B705" stroke-width="3"/>
+              <circle cx="0" cy="-32" r="7" fill="#F2B705"/>
+            </g>
+            <g transform="translate(520 236)"><rect width="112" height="52" rx="6" fill="#1C2646"/><text x="12" y="23" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="16" fill="#FFFFFF">Penhale</text><text x="12" y="42" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="16" fill="#F2B705">Garage</text></g>
+          </svg>
+          <figcaption>Simplified diagram, not to scale.</figcaption>
+        </figure></div>
+          <div class="map">
             <div>
               <p>The map is provided by Google, which may set cookies.</p>
               <button class="btn btn-primary" type="button" data-load-map="https://maps.google.com/maps?q=Penhale%20Garage&amp;t=m&amp;z=12&amp;output=embed&amp;iwloc=near">Show map</button>

@@ -210,6 +210,107 @@
     });
   }
 
+
+  /* 7. Scroll reveals: dashboard "ignition check", route drawing, ticks */
+  var reveals = doc.querySelectorAll("[data-reveal]");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!("IntersectionObserver" in window) || reduce) {
+    for (var rv = 0; rv < reveals.length; rv++) reveals[rv].classList.add("is-visible");
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-visible"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.35 });
+    for (var ro = 0; ro < reveals.length; ro++) io.observe(reveals[ro]);
+  }
+
+  /* 8. Warning-light dashboard: one light selected at a time */
+  var dashes = doc.querySelectorAll(".dash");
+  for (var dsh = 0; dsh < dashes.length; dsh++) {
+    (function (dash) {
+      var buttons = dash.querySelectorAll(".dash-light");
+      var details = dash.querySelectorAll(".dash-detail");
+      function select(btn) {
+        for (var b = 0; b < buttons.length; b++) buttons[b].setAttribute("aria-pressed", buttons[b] === btn ? "true" : "false");
+        for (var d = 0; d < details.length; d++) details[d].hidden = details[d].id !== btn.getAttribute("data-light");
+      }
+      for (var b = 0; b < buttons.length; b++) {
+        buttons[b].addEventListener("click", function () { select(this); });
+      }
+      if (buttons.length) select(buttons[0]);
+    })(dashes[dsh]);
+  }
+
+  /* 9. MOT reminder: builds a calendar event on the device, nothing is sent */
+  var motForm = doc.getElementById("mot-form");
+  if (motForm) {
+    var motStatus = doc.getElementById("mot-status");
+    var motDate = doc.getElementById("mot-date");
+    var which = "ics";
+    var calBtns = motForm.querySelectorAll("[data-cal]");
+    for (var cb = 0; cb < calBtns.length; cb++) {
+      calBtns[cb].addEventListener("click", function () { which = this.getAttribute("data-cal"); });
+    }
+    var ymd = function (d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); };
+    var nice = function (d) { return d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); };
+    motForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      motStatus.removeAttribute("data-kind");
+      var parts = (motDate.value || "").split("-");
+      if (parts.length !== 3) {
+        motStatus.dataset.kind = "error";
+        motStatus.textContent = "Enter your MOT expiry date first.";
+        motDate.focus();
+        return;
+      }
+      var y = +parts[0], m = +parts[1] - 1, day = +parts[2];
+      var expiry = new Date(y, m, day);
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      if (expiry < today) {
+        motStatus.dataset.kind = "error";
+        motStatus.textContent = "That date has passed, so your MOT may have run out. Call us on 01726 861 338 to book.";
+        return;
+      }
+      // Earliest MOT that keeps the renewal date: one month (minus a day) before expiry
+      var lastDay = new Date(y, m, 0).getDate();
+      var remind = new Date(y, m - 1, Math.min(day, lastDay));
+      remind.setDate(remind.getDate() + 1);
+      if (remind < today) remind = today;
+      var next = new Date(remind); next.setDate(next.getDate() + 1);
+      var title = "Book MOT at Penhale Garage";
+      var details = "Your MOT runs out on " + nice(expiry) + ". Call Penhale Garage on 01726 861 338 to book. New Rd, Fraddon, St. Columb TR9 6NA.";
+      if (which === "google") {
+        var g = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+          "&text=" + encodeURIComponent(title) +
+          "&dates=" + ymd(remind) + "/" + ymd(next) +
+          "&details=" + encodeURIComponent(details) +
+          "&location=" + encodeURIComponent("Penhale Garage, New Rd, Fraddon, TR9 6NA");
+        window.open(g, "_blank", "noopener");
+      } else {
+        var stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+        var ics = [
+          "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Penhale Garage//MOT reminder//EN", "CALSCALE:GREGORIAN",
+          "BEGIN:VEVENT",
+          "UID:mot-" + ymd(expiry) + "-" + Date.now() + "@penhalegarage.co.uk",
+          "DTSTAMP:" + stamp,
+          "DTSTART;VALUE=DATE:" + ymd(remind),
+          "DTEND;VALUE=DATE:" + ymd(next),
+          "SUMMARY:" + title,
+          "DESCRIPTION:" + details.replace(/,/g, "\\,"),
+          "LOCATION:Penhale Garage\\, New Rd\\, Fraddon\\, TR9 6NA",
+          "BEGIN:VALARM", "TRIGGER:PT9H", "ACTION:DISPLAY", "DESCRIPTION:" + title, "END:VALARM",
+          "END:VEVENT", "END:VCALENDAR"
+        ].join("\r\n");
+        var a = doc.createElement("a");
+        a.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+        a.download = "penhale-garage-mot-reminder.ics";
+        doc.body.appendChild(a); a.click(); a.remove();
+      }
+      motStatus.textContent = "Reminder set for " + nice(remind) + ". Your MOT runs out on " + nice(expiry) + ".";
+    });
+  }
+
   /* 6. Contact form: send with fetch when possible, show a clear result. */
   var form = doc.getElementById("contact-form");
   if (form) {

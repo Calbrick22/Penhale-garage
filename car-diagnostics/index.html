@@ -22,6 +22,7 @@
   <link rel="preload" href="../fonts/montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="../js/main.js" defer></script>
 </head><body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -77,9 +78,52 @@
     <div class="section">
       <div class="wrap article-grid">
         <div class="prose">
-          <figure>
-            <img src="../images/service-diagnostics.jpg" alt="A mechanic using a laptop connected to a car engine" width="800" height="534" loading="lazy" decoding="async">
-          </figure>
+          <div class="prose-dash"><h2 class="visually-hidden">Common dashboard warning lights</h2>
+        <div class="dash" data-reveal>
+          <div role="group" aria-label="Dashboard warning lights">
+            <ul class="dash-lights">
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="diag-lights-engine" aria-pressed="false" style="--i:0"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21v11M7 26.5h4M11 19h6v-5h12v5h4l4 4h3v-3h4v14h-4v-3h-3l-4 6H17l-6-6z"/><path d="M19 10h10"/></svg><span class="visually-hidden">Engine management light</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="diag-lights-oil" aria-pressed="false" style="--i:1"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20l6 2.5h7l2.5-4h10l4 4 9.5-4.5-12 12.5H12l-7-4.5z"/><path d="M25.5 18.5v-4M22 14.5h7"/><path d="M44 28c0 2.2-1.6 3.6-1.6 4.8a1.6 1.6 0 0 0 3.2 0c0-1.2-1.6-2.6-1.6-4.8z" fill="currentColor"/></svg><span class="visually-hidden">Oil pressure warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="diag-lights-battery" aria-pressed="false" style="--i:2"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="15" width="36" height="23" rx="2"/><path d="M11 15v-4h6v4M31 15v-4h6v4M12 26.5h7M15.5 23v7M29 26.5h7"/></svg><span class="visually-hidden">Battery / charging warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="red" data-light="diag-lights-brakes" aria-pressed="false" style="--i:3"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="12"/><path d="M8.5 12.5a19 19 0 0 0 0 23M39.5 12.5a19 19 0 0 1 0 23M24 17v9"/><circle cx="24" cy="31" r="1.7" fill="currentColor"/></svg><span class="visually-hidden">Brake system warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="diag-lights-tyres" aria-pressed="false" style="--i:4"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 37c-3.5-3.5-6-8-6-13.5C7 16 10 11.5 11.5 9h25c1.5 2.5 4.5 7 4.5 14.5 0 5.5-2.5 10-6 13.5"/><path d="M9 40.5h30M24 15.5v10"/><circle cx="24" cy="30.5" r="1.7" fill="currentColor"/></svg><span class="visually-hidden">Tyre pressure warning</span></button></li>
+              <li><button class="dash-light" type="button" data-tone="amber" data-light="diag-lights-abs" aria-pressed="false" style="--i:5"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="13"/><path d="M7.5 12.5a19.5 19.5 0 0 0 0 23M40.5 12.5a19.5 19.5 0 0 1 0 23"/><text x="24" y="28" text-anchor="middle" font-size="10.5" font-weight="800" font-family="Montserrat, Arial, sans-serif" fill="currentColor" stroke="none">ABS</text></svg><span class="visually-hidden">ABS warning</span></button></li>
+            </ul>
+          </div>
+          <div class="dash-info" aria-live="polite">
+            <div class="dash-detail" id="diag-lights-engine" data-tone="amber">
+              <h3>Engine management light</h3>
+              <p>The engine&#x27;s computer has recorded a fault. It can be something minor, such as a sensor, or something that needs attention soon.</p>
+              <p class="dash-act">If it flashes, reduce speed and get the car checked straight away.</p>
+            </div>
+            <div class="dash-detail" id="diag-lights-oil" data-tone="red">
+              <h3>Oil pressure warning</h3>
+              <p>Oil pressure is too low. Driving on can cause serious engine damage.</p>
+              <p class="dash-act">Pull over safely and switch the engine off as soon as you can.</p>
+            </div>
+            <div class="dash-detail" id="diag-lights-battery" data-tone="red">
+              <h3>Battery / charging warning</h3>
+              <p>The charging system isn&#x27;t working properly. This is often the alternator or its drive belt.</p>
+              <p class="dash-act">The car may only run for a short time on battery power, so get it checked soon.</p>
+            </div>
+            <div class="dash-detail" id="diag-lights-brakes" data-tone="red">
+              <h3>Brake system warning</h3>
+              <p>This can mean the handbrake is on, the brake fluid is low, or there is a fault in the braking system.</p>
+              <p class="dash-act">If it stays on with the handbrake off, don&#x27;t drive until it&#x27;s been checked.</p>
+            </div>
+            <div class="dash-detail" id="diag-lights-tyres" data-tone="amber">
+              <h3>Tyre pressure warning</h3>
+              <p>One or more tyres may be under-inflated.</p>
+              <p class="dash-act">Check and adjust your tyre pressures. If the light comes back, you may have a slow puncture.</p>
+            </div>
+            <div class="dash-detail" id="diag-lights-abs" data-tone="amber">
+              <h3>ABS warning</h3>
+              <p>The anti-lock braking system has a fault. Your normal brakes should still work, but ABS won&#x27;t help in an emergency stop.</p>
+              <p class="dash-act">Drive carefully and book a check soon.</p>
+            </div>
+          </div>
+          <p class="dash-note">Common meanings only. Lights vary between cars, so check your handbook.</p>
+        </div></div>
           <h2>State-of-the-Art Engine Diagnostics</h2>
           <p>We use state-of-the-art Snap-On diagnostics equipment for fault finding in modern cars. Modern cars are equipped with an engine control unit (ECU) that is linked to multiple sensors within the vehicle. If a sensor identifies a fault, it triggers and ECU fault code. As a result, a warning light will illuminate on the dash.</p>
           <p>Our diagnostic equipment simply plugs into your vehicle’s ECU and will decipher error codes and diagnose any faults. If you have noticed unfamiliar warning lights on your instrument board then we recommend that you get it checked out as soon as possible to avoid the possibility of further damage and costly repair bills.</p>

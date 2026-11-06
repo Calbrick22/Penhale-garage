@@ -22,6 +22,7 @@
   <link rel="preload" href="../fonts/montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="../js/main.js" defer></script>
 </head><body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,6 +84,27 @@
           <h2>When is My MOT Due?</h2>
           <p>If you are unsure when your next MOT is due, then simply <a href="https://www.gov.uk/check-mot-status" rel="noopener">check your vehicle’s MOT status online</a> and it will show you when your current MOT expires.</p>
           <p>If your vehicle is over three years of age it will need to be submitted for an annual inspection. This rule excludes classic cars that were registered over 40 years ago.</p>
+          <section class="mot-card on-dark" aria-labelledby="mot-card-title">
+            <h2 id="mot-card-title">Never miss your MOT</h2>
+            <ol class="mot-steps">
+              <li>
+                <p><strong>Check your MOT expiry date</strong> on the official GOV.UK service.</p>
+                <a class="btn btn-ghost" href="https://www.gov.uk/check-mot-status" rel="noopener">Check MOT status on GOV.UK</a>
+              </li>
+              <li>
+                <form class="mot-form" id="mot-form" novalidate>
+                  <label for="mot-date"><strong>Add a reminder to your phone</strong> <span class="hint">Enter the expiry date. We'll remind you a month before, which is the earliest you can have your MOT and keep the same renewal date.</span></label>
+                  <input id="mot-date" name="mot-date" type="date" required>
+                  <div class="btn-row">
+                    <button class="btn btn-call" type="submit" data-cal="ics">Add to calendar</button>
+                    <button class="btn btn-ghost" type="submit" data-cal="google">Google Calendar</button>
+                  </div>
+                  <p class="mot-status" id="mot-status" role="status"></p>
+                </form>
+              </li>
+            </ol>
+            <p class="mot-small">Nothing is sent to us. The reminder is created on your device.</p>
+          </section>
           <h2>What Will be Tested During the MOT?</h2>
           <p>The inspection covers many aspects of your vehicle. So, knowing what to look out for before you submit your vehicle for testing can help to give it the best chance of passing the first time. It is easy to fail on minor things such as faulty lights, so make sure you give your vehicle a once over first. As a guide, the test will include but is not limited to the following parts of your vehicle:</p>
           <ul class="ticks cols"><li>Battery electrical wiring</li><li>Bodywork</li><li>Brakes including pipes, shoes, discs and drums</li><li>Doors, boot and bonnet including hinges</li><li>Electrical wiring</li><li>Engine mounts</li><li>Exhaust system including emissions testing</li><li>Fuel system</li><li>Horn</li><li>Lights</li><li>Mirrors</li><li>Registration plate</li><li>Seat belts</li><li>Seats</li><li>Steering rack</li><li>Suspension</li><li>Windscreen, wipers and washers</li></ul>
