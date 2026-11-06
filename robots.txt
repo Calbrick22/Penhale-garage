@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://penhalegarage.co.uk/sitemap.xml
