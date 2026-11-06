@@ -59,7 +59,25 @@ The old form only worked inside WordPress. The new form sends messages to **penh
   - There's a soft amber glow behind the call panel.
   - Headings are larger and bolder.
 
+## Interactive features (third round)
 
+- **"Warning light on?" dashboard** (home page and Diagnostics page). A dark instrument-cluster panel with six common warning lights: engine management, oil pressure, battery/charging, brakes, tyre pressure and ABS. When it scrolls into view the lights come on one after another, like a car's bulb check when you turn the key. Tapping a light shows what it usually means and what to do, with a button to book a £25 + VAT diagnostic check.
+- **MOT reminder** (MOT page). Step 1 links to the official GOV.UK "Check MOT status" service. Step 2 lets the visitor enter their expiry date and add a reminder to their phone's calendar, or to Google Calendar, for the earliest date they can have the MOT and keep the same renewal date. Nothing is sent to the garage or stored on the website.
+- **"Just off the A30" route graphic** (home page and Contact page). A simple illustrated map: the A30 between Redruth and Bodmin, the turn-off by Kingsley Village, and New Rd to the garage. An amber route draws itself when it scrolls into view and a pin drops on the garage. It's labelled "Simplified diagram, not to scale."
+- **"Why choose us" ticks** switch on one by one as the list scrolls into view.
+- All movement is skipped for people who've asked their device to reduce motion.
+- Without JavaScript, everything is still shown, just without the animation.
+
+### New wording written for these features (please check)
+
+This text didn't exist on the old site. It was written as general guidance and should be checked by the garage before going live:
+
+- The six warning-light explanations. Each one is a short "what it usually means" plus "what to do", with the note "Common meanings only. Lights vary between cars, so check your handbook."
+- "Warning light on? Tap a light to see what it usually means. Our diagnostic check pinpoints the exact fault for £25 + VAT."
+- The MOT reminder text, including that the reminder is set for a month before expiry (based on GOV.UK's rule that you can have an MOT up to a month, minus a day, before it runs out and keep the same renewal date).
+- **The route diagram.** It's schematic. Please check it gives the right impression of where the garage sits relative to the A30 and Kingsley Village.
+
+## Things we need you to confirm before going live
 
 These show as small red **[TO CONFIRM]** labels on the pages. Please check each one and tell us the correct answer.
 
